@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom'
 import './Home.css'
@@ -13,8 +12,7 @@ const Home = () => {
       transition: {duration: 1}
     },
     exit: {
-      y: '-100vh',
-      transition:{ease: 'easeInOut', duration: 1}
+      opacity: 0
     }
   }
 
