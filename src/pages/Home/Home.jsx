@@ -6,13 +6,19 @@ const Home = () => {
   let navigate = useNavigate()
 
   const variants = {
-    initial: {opacity: 0},
+    initial: {
+      opacity: 0,
+      y: '-100vh',
+    },
     visible: {
-      opacity: 1,
+      opacity: [0,.1,.2,.5,1],
+      y:0,
       transition: {duration: 1}
     },
     exit: {
-      opacity: 0
+      opacity: 0,
+      y: '-100vh',
+      transition:{ease: 'easeInOut'}
     }
   }
 

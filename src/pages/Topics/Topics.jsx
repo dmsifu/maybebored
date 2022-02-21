@@ -1,22 +1,31 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Topics.css'
 import TopicCard from "../../components/TopicCard"
 import { motion } from 'framer-motion'
 
 
-const Topics = () => {
+const Topics = ({ currentTopic,setCurrentTopic }) => {
 
   const topics = ['busywork','relaxation','recreational','education','social','music','cooking','diy','charity']
-  const [currentTopics, setCurrentTopics] = useState([])
+  const navigate = useNavigate()
+
 
   const variantsForText = {
-    initial: {opacity: 0},
+    initial: {
+      opacity: 0,
+      y: '-100vh',
+      transition:{ease: 'easeInOut'}
+    },
     visible: {
       opacity: 1,
-      transition: {duration: 1, delay: 1.2}
+      y:0,
+      transition: {duration: 1, delay: 1.2, ease:'easeInOut'}
     },
     exit: {
-      opacity: 0
+      opacity: 0,
+      y: '-100vh',
+      transition:{ease: 'easeInOut'}
     }
   }
 
@@ -26,10 +35,15 @@ const Topics = () => {
   
 
   function getTopics(){
-    const temp = topics.map((topic,index)=>{
-      return <TopicCard key={index} topic={topic} delay={2 + index/3}/>
+    return topics.map((topic,index)=>{
+      return <TopicCard key={index} topic={topic} handleTopicCardClick={handleTopicCardClick} delay={2 + index/3}/>
     })
-    setCurrentTopics(temp)
+  }
+
+  function handleTopicCardClick(topic){
+    setCurrentTopic(topic)
+    localStorage.setItem('topic',topic)
+    navigate('/activities')
   }
 
   return (
@@ -40,10 +54,10 @@ const Topics = () => {
         animate="visible"
         exit="exit"
       >
-        Choose a topic that interests you
+        Choose a topic that interests you 🧐
       </motion.h1>
-      <div className='topics'l>
-        {currentTopics}
+      <div className='topics'>
+        {getTopics()}
       </div>
     </div>
   )

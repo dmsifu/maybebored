@@ -1,9 +1,6 @@
 import { motion } from "framer-motion"
-import { useNavigate } from "react-router-dom"
 
-const TopicCard = ({ topic, delay }) => {
-
-    const navigate = useNavigate()
+const TopicCard = ({ topic, handleTopicCardClick ,delay }) => {
 
     const variantsForTopics = {
         initial: {opacity: 0},
@@ -13,7 +10,9 @@ const TopicCard = ({ topic, delay }) => {
           transition: {duration: .5, delay: delay}
         },
         exit: {
-          opacity: 0
+          opacity: 0,
+          y: '-100vh',
+          transition:{ease: 'easeInOut'}
         }
       }
 
@@ -24,7 +23,7 @@ const TopicCard = ({ topic, delay }) => {
         initial="initial"
         animate="visible"
         exit="exit"
-        onClick={()=>navigate('/activities')}
+        onClick={()=>handleTopicCardClick(topic)}
     >
         <h1>{topic}</h1>
     </motion.div>
