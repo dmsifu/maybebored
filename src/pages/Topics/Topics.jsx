@@ -1,17 +1,10 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './Topics.css'
-import TopicCard from "../../components/TopicCard"
 import { motion } from 'framer-motion'
+import Letters from '../../components/Letters'
+import './Topics.css'
 
+const Topics = ({ currentTopic }) => {
 
-const Topics = ({ currentTopic,setCurrentTopic }) => {
-
-  const topics = ['busywork','relaxation','recreational','education','social','music','cooking','diy','charity']
-  const navigate = useNavigate()
-
-
-  const variantsForText = {
+   const variantsForText = {
     initial: {
       opacity: 0,
       y: '-100vh',
@@ -29,37 +22,27 @@ const Topics = ({ currentTopic,setCurrentTopic }) => {
     }
   }
 
-  useEffect(() => {
-    getTopics()
-  }, [])
-  
-
-  function getTopics(){
-    return topics.map((topic,index)=>{
-      return <TopicCard key={index} topic={topic} handleTopicCardClick={handleTopicCardClick} delay={2 + index/3}/>
-    })
-  }
-
-  function handleTopicCardClick(topic){
-    setCurrentTopic(topic)
-    localStorage.setItem('topic',topic)
-    navigate('/activities')
+  function scrambleWord(word){
+    var scrambledWord = word.split('').sort(function(){return 0.5-Math.random()})
+    while(scrambledWord.join('') === word){
+      scrambledWord = word.split('').sort(function(){return 0.5-Math.random()})
+    }
+    return scrambledWord
   }
 
   return (
-    <div className='topics-container'>
-      <motion.h1
-        variants={variantsForText}
-        initial="initial"
-        animate="visible"
-        exit="exit"
-      >
-        Choose a topic that interests you 🧐
-      </motion.h1>
-      <div className='topics'>
-        {getTopics()}
-      </div>
-    </div>
+    <motion.div 
+      className='topics-container'
+      variants={variantsForText}
+      initial="initial"
+      animate="visible"
+      exit="exit"
+    >
+      <h1>
+        Drag the letters to unscramble the word for an interesting topic 🧐
+      </h1>
+      <Letters letters={scrambleWord(currentTopic)} currentTopic={currentTopic} />
+    </motion.div>
   )
 }
 

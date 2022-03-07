@@ -9,30 +9,8 @@
     font-size: 3rem;
 }
 
-.topics{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    row-gap: 10px;
-    column-gap: 10px;
-}
-
-.topic-card{
+.letters-container {
     display: flex;
-    align-items: center;
-    background-color: white;
-    justify-content: center;
-    border: solid 1px white;
-    border-radius: 15px;
-    width: 20em;
-    height: 10em;
-}
-
-.topic-card h1 {
-    color: #161A25;
-    font-size: 3rem;
-}
-
-.topic-card h1:hover {
-    color: #642bad;
+    font-size: 5rem;
+    column-gap: 50px;
 }
