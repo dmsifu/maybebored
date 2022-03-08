@@ -2,15 +2,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 30px;
+    row-gap: 50px;
 }
 
 .topics-container h1{
     font-size: 3rem;
 }
 
-.letters-container {
+.letters-container{
     display: flex;
-    font-size: 5rem;
-    column-gap: 50px;
+    justify-content: center;
+    column-gap: 30px;
+}
+.letter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(217, 220, 241);
+    color: black;
+    border: solid 1px rgb(217, 220, 241);
+    border-radius: 15px;
+    box-shadow: 0 3px 25px rgba(153, 155, 168, 0.4);
+    width: 7rem;
+    height: 7rem;
+}
+
+.letter h1 {
+    font-size: 4rem;
 }

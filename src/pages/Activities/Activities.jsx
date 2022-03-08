@@ -4,12 +4,14 @@ import ActivityCard from '../../components/ActivityCard'
 import YoutubeCard from '../../components/YoutubeCard'
 import { motion } from "framer-motion"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
-const Activities = ({ currentTopic }) => {
+const Activities = ({ hasUnscrambled }) => {
 
   const [Activity, setActivity] = useState([])
   const [youtubeVids, setYoutubeVids] = useState([])
+  const navigate = useNavigate()
 
 
   const variantsForActivities = {
@@ -19,7 +21,7 @@ const Activities = ({ currentTopic }) => {
     },
     visible: {
       opacity: 1,
-      y:'150vh', 
+      y:'10vh', 
       transition: {duration: 1, delay: 1.2}
     },
     exit: {
@@ -30,10 +32,14 @@ const Activities = ({ currentTopic }) => {
   }
 
   useEffect(() => {
+    if(!hasUnscrambled){
+      navigate('/')
+    }
+
     const fetchActivities = async () => { 
       
       axios
-        .get(`http://www.boredapi.com/api/activity?type=${currentTopic}`)
+        .get(`http://www.boredapi.com/api/activity?type=${localStorage.getItem('topic')}`)
         .then(response=>{
           setActivity(response.data)
           return axios({
@@ -50,9 +56,8 @@ const Activities = ({ currentTopic }) => {
     fetchActivities()
   }, [])
 
-  
   return (
-    <motion.div
+    <motion.div 
       className='activities-container'
       variants={variantsForActivities}
       initial="initial"

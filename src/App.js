@@ -7,21 +7,25 @@ import {Home, Topics, Activities} from './pages'
 const App = () => {
   const location = useLocation();
   const topics = ['busywork','relaxation','recreational','education','social','music','cooking','diy','charity']
-  const [currentTopic, setCurrentTopic] = useState(localStorage.getItem('topic') || '')
+  const [currentTopic, setCurrentTopic] = useState(localStorage.getItem('topic'))
+  const [hasUnscrambled, setHasUnscrambled] = useState(false)
 
   useEffect(() => {
     setCurrentTopic(topics[Math.floor(Math.random()*topics.length)])
-    localStorage.setItem('topic', currentTopic)
   }, [])
-  
 
+  useEffect(() => {
+    localStorage.setItem('topic',currentTopic)
+  }, [currentTopic])
+  
+  
   return (
     <div className='app'>
       <AnimatePresence>
           <Routes location={location} key={location.key}>
             <Route path='/' element={<Home />} />
-            <Route path='topics' element={<Topics currentTopic={currentTopic} setCurrentTopic={setCurrentTopic}/>} />
-            <Route path='activities' element={<Activities currentTopic={currentTopic}/>} />        
+            <Route path='topics' element={<Topics setHasUnscrambled={setHasUnscrambled} currentTopic={currentTopic} />} />
+            <Route path='activities' element={<Activities hasUnscrambled={hasUnscrambled} currentTopic={currentTopic }/>} />        
           </Routes>
       </AnimatePresence>
     </div>

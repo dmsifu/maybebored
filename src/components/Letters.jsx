@@ -2,27 +2,32 @@ import { Reorder } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Letters = ({ letters, currentTopic }) => {
+const Letters = ({ letters, setHasUnscrambled, currentTopic }) => {
     
     const [lettersArray, setLettersArray] = useState(letters)
+    const [lettersIds, setLettersIds] = useState(letters.map((e,i)=>(i)))
     const navigate = useNavigate()
 
     useEffect(() => {
-        if( currentTopic === lettersArray.join('')){
-            setTimeout(()=>{navigate('/activities')},1000)
-        }
-    }, [lettersArray])
+        const currentLetters = lettersIds.map(
+            (letterId)=> lettersArray.find((letter) => letter.id === letterId).letter
+            )
+        if( currentTopic === currentLetters.join('')){
+            setHasUnscrambled(true)
+            setTimeout(()=>{navigate('/activities')},2000)
+        }    
+    }, [lettersIds])
 
     return (
     <Reorder.Group 
         axis="x" 
-        values={lettersArray} 
-        onReorder={setLettersArray} 
+        values={lettersIds} 
+        onReorder={setLettersIds} 
         className='letters-container'
     >
-            {lettersArray.map(( letter, i )=>(
-                <Reorder.Item key={i} as={'h1'} value={letter}>
-                    {letter}
+            {lettersIds.map(( letterId )=>(
+                <Reorder.Item key={letterId} as={'div'} value={letterId} className='letter'>
+                    <h1>{lettersArray.find((l) => l.id === letterId ).letter}</h1>
                 </Reorder.Item>
             ))}
     </Reorder.Group>

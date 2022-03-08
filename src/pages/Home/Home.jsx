@@ -12,7 +12,7 @@ const Home = () => {
     },
     visible: {
       opacity: [0,.1,.2,.5,1],
-      y:0,
+      y:'40vh',
       transition: {duration: 1}
     },
     exit: {
