@@ -2,10 +2,9 @@ import { Reorder } from "framer-motion"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Letters = ({ letters, setHasUnscrambled, currentTopic }) => {
+const Letters = ({ lettersArray, setHasUnscrambled, currentTopic }) => {
     
-    const [lettersArray, setLettersArray] = useState(letters)
-    const [lettersIds, setLettersIds] = useState(letters.map((e,i)=>(i)))
+    const [lettersIds, setLettersIds] = useState(lettersArray.map((e,i)=>(i)))
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -17,7 +16,7 @@ const Letters = ({ letters, setHasUnscrambled, currentTopic }) => {
             setTimeout(()=>{navigate('/activities')},2000)
         }    
     }, [lettersIds])
-
+    
     return (
     <Reorder.Group 
         axis="x" 

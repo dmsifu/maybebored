@@ -11,6 +11,10 @@ const Activities = ({ hasUnscrambled }) => {
 
   const [Activity, setActivity] = useState([])
   const [youtubeVids, setYoutubeVids] = useState([])
+  const [error, setError] = useState({
+    errormessage: '',
+    isError: false
+  })
   const navigate = useNavigate()
 
 
@@ -35,9 +39,10 @@ const Activities = ({ hasUnscrambled }) => {
     if(!hasUnscrambled){
       navigate('/')
     }
-
+  }, [])
+  
+  useEffect(() => {
     const fetchActivities = async () => { 
-      
       axios
         .get(`http://www.boredapi.com/api/activity?type=${localStorage.getItem('topic')}`)
         .then(response=>{
@@ -50,7 +55,11 @@ const Activities = ({ hasUnscrambled }) => {
         })
         .then(response => {
           setYoutubeVids(response.data)
-        })
+        }).catch((err)=> setError({
+            errormessage: err,
+            isError: true
+          }
+        ))
     }
 
     fetchActivities()
@@ -64,12 +73,19 @@ const Activities = ({ hasUnscrambled }) => {
       animate="visible"
       exit="exit"
     >
-      <h1>Try this activity out 😏</h1>
-      <div className='activities'>
-        <ActivityCard Activity={Activity}/>
-      </div>
-      <h1>Here's a few Youtube Videos that may inspire you</h1>
-      <YoutubeCard youtubeVids={youtubeVids}/>
+      {error.isError && 
+        <h1>There was an API error! Try again tomorrow 😥</h1>
+      }
+      {!error.isError && 
+      <>
+        <h1>Try this activity out 😏</h1>
+        <div className='activities'>
+          <ActivityCard Activity={Activity}/>
+        </div>
+        <h1>Here's a few Youtube Videos that may inspire you</h1>
+        <YoutubeCard youtubeVids={youtubeVids}/>
+      </>
+      }
     </motion.div>
   )
 }

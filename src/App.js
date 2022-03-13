@@ -7,12 +7,10 @@ import {Home, Topics, Activities} from './pages'
 const App = () => {
   const location = useLocation();
   const topics = ['busywork','relaxation','recreational','education','social','music','cooking','diy','charity']
-  const [currentTopic, setCurrentTopic] = useState(localStorage.getItem('topic'))
+  const [currentTopic, setCurrentTopic] = useState(topics[Math.floor(Math.random()*topics.length)])
   const [hasUnscrambled, setHasUnscrambled] = useState(false)
 
-  useEffect(() => {
-    setCurrentTopic(topics[Math.floor(Math.random()*topics.length)])
-  }, [])
+
 
   useEffect(() => {
     localStorage.setItem('topic',currentTopic)
