@@ -44,7 +44,7 @@ const Activities = ({ hasUnscrambled }) => {
   useEffect(() => {
     const fetchActivities = async () => { 
       axios
-        .get(`http://www.boredapi.com/api/activity?type=${localStorage.getItem('topic')}`)
+        .get(`https://www.boredapi.com/api/activity?type=${localStorage.getItem('topic')}`)
         .then(response=>{
           setActivity(response.data)
           return axios({

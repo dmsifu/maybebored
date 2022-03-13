@@ -1,4 +1,3 @@
 [build]
-    CI = 'false npm run build'
     functions = 'functions'
     publish = 'build'
