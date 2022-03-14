@@ -5,7 +5,7 @@ const APIKEY = process.env.APIKEY
 exports.handler = async function(event){
     const activityName = event.queryStringParameters.search
 
-    const response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?key=${APIKEY}&part=snippet&maxResults=15&order=viewCount&q=${activityName}`) 
+    const response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?key=${APIKEY}&part=snippet&maxResults=15&q=how%to%${activityName}`) 
 
     try {
         return {
