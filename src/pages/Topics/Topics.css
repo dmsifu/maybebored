@@ -25,7 +25,9 @@
     box-shadow: 0 3px 25px rgba(153, 155, 168, 0.4);
     width: 7rem;
     height: 7rem;
+    cursor: pointer;
 }
+
 
 .letter h1 {
     font-size: 4rem;
