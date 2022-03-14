@@ -42,6 +42,11 @@ const Topics = ({ setHasUnscrambled, currentTopic }) => {
     ))
   }
 
+  function hint(){
+    const topicletters = currentTopic.split('')
+    alert(`This topic starts with the letter ${topicletters[0]} and ends with the letter ${topicletters[topicletters.length - 1]}`)
+  }
+
   return (
     <motion.div 
       className='topics-container'
@@ -53,6 +58,10 @@ const Topics = ({ setHasUnscrambled, currentTopic }) => {
       <h1>Drag the letters to unscramble the word for an interesting topic 🧐</h1>
       <Letters lettersArray={scrambledWord} setHasUnscrambled={setHasUnscrambled} currentTopic={currentTopic}/>
       <h1>Refresh for a new word</h1>
+      <div className='hint'>Need a hint? click 
+        <motion.p onClick={hint} animate={{ scale: [1.05,0.95,1.05] }} transition={{  duration: 1 , repeat: Infinity }} > here</motion.p> 
+      </div>
+      
     </motion.div>
   )
 }

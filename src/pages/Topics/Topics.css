@@ -32,3 +32,15 @@
 .letter h1 {
     font-size: 4rem;
 }
+
+.hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.6rem;
+}
+
+.hint p{
+    color: #B788F3;
+    cursor: pointer;
+}
