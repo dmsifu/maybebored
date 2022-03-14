@@ -32,11 +32,12 @@ const Home = () => {
     >
         <h1>Bored? Lets fix that by clicking </h1>
           <motion.h1 
-              animate={{color: '#B788F3'}} 
-              transition={{ delay: 1.5,duration: 1.5 }}
-              onClick={()=>navigate('/topics')}
-              >
-                here
+            className="here"
+            animate={{color: '#B788F3'}} 
+            transition={{ delay: 1.5,duration: 1.5 }}
+            onClick={()=>navigate('/topics')}
+            >
+              here
           </motion.h1>
     </motion.div>
   )
