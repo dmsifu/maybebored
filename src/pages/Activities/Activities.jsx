@@ -1,11 +1,10 @@
-import './Activities.css'
 import { useEffect, useState } from 'react'
+import { motion } from "framer-motion"
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import ActivityCard from '../../components/ActivityCard'
 import YoutubeCard from '../../components/YoutubeCard'
-import { motion } from "framer-motion"
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-
+import './Activities.css'
 
 const Activities = ({ hasUnscrambled }) => {
 
@@ -16,7 +15,6 @@ const Activities = ({ hasUnscrambled }) => {
     isError: false
   })
   const navigate = useNavigate()
-
 
   const variantsForActivities = {
     initial: {
@@ -41,6 +39,7 @@ const Activities = ({ hasUnscrambled }) => {
     }
   }, [])
   
+  //fetch activity, then sends activity to serverless function that returns youtube data
   useEffect(() => {
     const fetchActivities = async () => { 
       axios

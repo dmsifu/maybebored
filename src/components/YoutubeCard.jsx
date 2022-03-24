@@ -1,6 +1,7 @@
 
 const YoutubeCard = ( { youtubeVids} ) => {
 
+    //sets up thumbnail, title, description to display into youtube card
     function parseVideoData(vidoes){
          return vidoes.map((item, index)=>(
             <a key={index} href={`https://www.youtube.com/watch?v=${item.id.videoId}`}>

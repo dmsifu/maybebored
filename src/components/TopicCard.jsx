@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { AnimatePresence } from 'framer-motion'
 
-const TopicCard = ({ topic, handleTopicCardClick, hasPressedButton, setHasPressedButton ,handleButton  }) => {
+const TopicCard = ({ topic, handleTopicCardClick, hasPressedButton }) => {
 
     const variantsForTopics = {
         initial: {
@@ -26,7 +26,7 @@ const TopicCard = ({ topic, handleTopicCardClick, hasPressedButton, setHasPresse
   return (
     <div
       className="topic-card" onClick={() => handleTopicCardClick(topic)}
-      >
+    >
       <AnimatePresence>
         {!hasPressedButton && 
           <motion.h1

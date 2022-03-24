@@ -7,6 +7,7 @@ const Letters = ({ lettersArray, setHasUnscrambled, currentTopic }) => {
     const [lettersIds, setLettersIds] = useState(lettersArray.map((e,i)=>(i)))
     const navigate = useNavigate()
 
+    //maps each letter id then checks if user has unscrambled word
     useEffect(() => {
         const currentLetters = lettersIds.map(
             (letterId)=> lettersArray.find((letter) => letter.id === letterId).letter
@@ -25,7 +26,12 @@ const Letters = ({ lettersArray, setHasUnscrambled, currentTopic }) => {
         className='letters-container'
     >
             {lettersIds.map(( letterId )=>(
-                <Reorder.Item key={letterId} as={'div'} value={letterId} className='letter'>
+                <Reorder.Item 
+                    key={letterId} 
+                    as={'div'} 
+                    value={letterId} 
+                    className='letter'
+                >
                     <h1>{lettersArray.find((l) => l.id === letterId ).letter}</h1>
                 </Reorder.Item>
             ))}

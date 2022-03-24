@@ -10,12 +10,10 @@ const App = () => {
   const [currentTopic, setCurrentTopic] = useState(topics[Math.floor(Math.random()*topics.length)])
   const [hasUnscrambled, setHasUnscrambled] = useState(false)
 
-
-
+  //in case of page refresh
   useEffect(() => {
     localStorage.setItem('topic',currentTopic)
   }, [currentTopic])
-  
   
   return (
     <div className='app'>

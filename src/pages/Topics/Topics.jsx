@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Letters from '../../components/Letters'
 import './Topics.css'
@@ -24,16 +24,20 @@ const Topics = ({ setHasUnscrambled, currentTopic }) => {
    }
  }
 
+ //in case of user refresh get a new topic
   useEffect(() => {
     localStorage.setItem('topic',currentTopic)
     setScrambledWord(scrambleWord(localStorage.getItem('topic')))
   }, [])
   
+  //splits topic into array of objects and randomizes letter order
   function scrambleWord(word){
     var scrambledWord = word.split('').sort(function(){return 0.5-Math.random()})
+
     while(scrambledWord.join('') === word){
       scrambledWord = word.split('').sort(function(){return 0.5-Math.random()})
     }
+
     return scrambledWord.map((letter,i)=>(
       {
         letter: letter,
@@ -56,12 +60,21 @@ const Topics = ({ setHasUnscrambled, currentTopic }) => {
       exit="exit"
     >
       <h1>Drag the letters to unscramble the word for an interesting topic 🧐</h1>
-      <Letters lettersArray={scrambledWord} setHasUnscrambled={setHasUnscrambled} currentTopic={currentTopic}/>
+      <Letters 
+        lettersArray={scrambledWord} 
+        setHasUnscrambled={setHasUnscrambled} 
+        currentTopic={currentTopic}
+      />
       <h1>Refresh for a new word</h1>
       <div className='hint'>Need a hint? click 
-        <motion.p onClick={hint} animate={{ scale: [1.05,0.95,1.05] }} transition={{  duration: 1 , repeat: Infinity }} > here</motion.p> 
-      </div>
-      
+        <motion.p 
+          onClick={hint} 
+          animate={{ scale: [1.05,0.95,1.05] }} 
+          transition={{  duration: 1 , repeat: Infinity }}
+        > 
+          here
+        </motion.p> 
+      </div> 
     </motion.div>
   )
 }
