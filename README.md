@@ -9,7 +9,7 @@ chosen.
 # Technologies used
 - React
 - Framer Motion
-- Sass
+- CSS
 - HTML
 
 # A few things I learned
