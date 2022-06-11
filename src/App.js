@@ -16,8 +16,8 @@ const App = () => {
   }, [currentTopic])
   
   return (
-    <div className='app'>
-      <AnimatePresence>
+    <div>
+      <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
             <Route path='/' element={<Home />} />
             <Route path='topics' element={<Topics setHasUnscrambled={setHasUnscrambled} currentTopic={currentTopic} />} />
