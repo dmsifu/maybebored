@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-const ActivityCard = ({ Activity }) => {
+const ActivityCard = ({ activity }) => {
   
   const variantsForActivitiesCard = {
     initial: {
@@ -9,7 +9,7 @@ const ActivityCard = ({ Activity }) => {
     visible: {
       opacity: 1,
       rotate: [0,5,-5,0],
-      transition: {duration: .5, delay: 2}
+      transition: {duration: .5, delay: 1}
     },
     exit: {
       opacity: 0,
@@ -25,7 +25,7 @@ const ActivityCard = ({ Activity }) => {
       animate="visible"
       exit="exit"
     >
-        <h1>{Activity.activity}</h1>
+        <h1>{activity}</h1>
     </motion.div>
   )
 }

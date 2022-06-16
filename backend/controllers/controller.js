@@ -7,7 +7,7 @@ const activities = require('../models/activity')
 const getTopic = async (req, res) => {
     try{
         const allTopics = await topics.findById('62a7871c4fec68b040b2456f')
-        res.status(200).json({topics: allTopics.topics[Math.floor(Math.random()*allTopics.topics.length)]})
+        res.status(200).json(allTopics)
     }
     catch(err){
         res.status(400).json({err}) 

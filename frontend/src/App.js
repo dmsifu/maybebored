@@ -1,20 +1,23 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-
+import axios from "axios";
 import {Home, Topics, Activities} from './pages'
 
 const App = () => {
   const location = useLocation();
-  const topics = ['busywork','relaxation','recreational','education','social','music','cooking','diy','charity']
+  const topics = ['education','anime','gaming','recreational','charity','music','film','cooking','busywork']
   const [currentTopic, setCurrentTopic] = useState(topics[Math.floor(Math.random()*topics.length)])
   const [hasUnscrambled, setHasUnscrambled] = useState(false)
 
+  
   //in case of page refresh
   useEffect(() => {
     localStorage.setItem('topic',currentTopic)
   }, [currentTopic])
   
+  
+
   return (
     <div>
       <AnimatePresence exitBeforeEnter>
