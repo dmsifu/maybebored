@@ -18,8 +18,16 @@ const getTopic = async (req, res) => {
 //@acess    Public
 const getActivity = async (req, res) => {
     try{
-        const allActivities = await activities.find({})
-        res.status(200).json(allActivities)
+        const topic = req.query.topic
+
+        if(topic){
+            const allActivities = await activities.aggregate([{$match: { topic: topic} },{ $sample: {size: 1}}])
+            res.status(200).json(allActivities)
+        }
+        else{
+            const allActivities = await activities.aggregate([{ $sample: {size: 1}}])
+            res.status(200).json(allActivities)
+        }
     }
     catch(err){
         res.status(400).json({err}) 
