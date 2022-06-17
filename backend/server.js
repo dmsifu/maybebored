@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config()
 const port = process.env.PORT || 5000
 const connectDB = require('./config/db')
 const addToDatabase = require('./scripts/addToDatabase')
+const path = require('path')
 
 connectDB()
 
