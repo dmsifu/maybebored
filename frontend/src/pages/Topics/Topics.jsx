@@ -15,7 +15,7 @@ const Topics = ({ setHasUnscrambled, currentTopic }) => {
    visible: {
      opacity: 1,
      y:300,
-     transition: {duration: 1, delay: 1.2}
+     transition: {duration: 1}
    },
    exit: {
      opacity: 0,

@@ -8,7 +8,7 @@ import './Activities.css'
 
 const Activities = ({ hasUnscrambled }) => {
 
-  const [Activity, setActivity] = useState([])
+  const [activity, setActivity] = useState([])
   const [youtubeVids, setYoutubeVids] = useState([])
   const [error, setError] = useState({
     errormessage: '',
@@ -24,7 +24,7 @@ const Activities = ({ hasUnscrambled }) => {
     visible: {
       opacity: 1,
       y:'10vh', 
-      transition: {duration: 1, delay: 1.2}
+      transition: {duration: 1, delay: .3}
     },
     exit: {
       opacity: 0,
@@ -39,22 +39,15 @@ const Activities = ({ hasUnscrambled }) => {
     }
   }, [])
   
-  //fetch activity, then sends activity to serverless function that returns youtube data
+  //fetch activity
   useEffect(() => {
     const fetchActivities = async () => { 
-      axios
-        .get(`https://www.boredapi.com/api/activity?type=${localStorage.getItem('topic')}`)
+      axios.get(`/api/activity?topic=${localStorage.getItem('topic')}`)
         .then(response=>{
-          setActivity(response.data)
-          return axios({
-            method: 'GET',
-            url: '/.netlify/functions/index',
-            params: { search: response.data.activity},
-          })
+          setActivity(response.data[0].activity)
+          setYoutubeVids(response.data[0].youtubeInfo)
         })
-        .then(response => {
-          setYoutubeVids(response.data)
-        }).catch((err)=> setError({
+        .catch((err)=> setError({
             errormessage: err,
             isError: true
           }
@@ -79,7 +72,7 @@ const Activities = ({ hasUnscrambled }) => {
       <>
         <h1>Try this activity out 😏</h1>
         <div className='activities'>
-          <ActivityCard Activity={Activity}/>
+          <ActivityCard activity={activity}/>
         </div>
         <h1>Here's a few Youtube Videos that may inspire you</h1>
         <YoutubeCard youtubeVids={youtubeVids}/>

@@ -1,0 +1,17 @@
+
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(.7rem, 0.4153rem + 1.6368vw, 2rem);
+    height: 100vh;
+}
+.top-text-container{
+    display: flex;
+    column-gap: 10px;
+}
+.here{
+    cursor: pointer;
+    margin-right: 10px;
+}
