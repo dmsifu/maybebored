@@ -17,6 +17,5 @@ Bored? Well, this website may help relieve that! maybebored is a full stack app 
 - Creating Routes using Browser Router
 - Animating between routes using Framer motions animation presence
 - Fetching APIs using Axios and handling the response
-- Sending Parameters to a netlify serverless function
 - Hiding API keys using a dotenv 
 
