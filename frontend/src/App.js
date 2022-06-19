@@ -1,12 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import axios from "axios";
 import {Home, Topics, Activities} from './pages'
 
 const App = () => {
   const location = useLocation();
-  const topics = ['education','anime','gaming','recreational','charity','music','film','cooking','busywork']
+  const topics = ['education','gaming','recreational','charity','music','film','cooking','busywork']
   const [currentTopic, setCurrentTopic] = useState(topics[Math.floor(Math.random()*topics.length)])
   const [hasUnscrambled, setHasUnscrambled] = useState(false)
 
